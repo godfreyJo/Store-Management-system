@@ -33,7 +33,7 @@ class Medicine(models.Model):
     added_on=models.DateTimeField(auto_now_add=True)
     objects=models.Manager()
 
-class MedicalDetails(models.Model):
+class MedicalDetail(models.Model):
     id=models.AutoField(primary_key=True)
     medicine_id=models.ForeignKey(Medicine, on_delete=models.CASCADE)
     salt_name=models.CharField(max_length=255)
@@ -76,7 +76,7 @@ class EmployeeSalary(models.Model):
     objects=models.Manager()
 
 
-class BillDetails(models.Model):
+class BillDetail(models.Model):
     id=models.AutoField(primary_key=True)
     bill_id=models.ForeignKey(Bill, on_delete=models.CASCADE)
     medicine_id=models.ForeignKey(Medicine, on_delete=models.CASCADE)
