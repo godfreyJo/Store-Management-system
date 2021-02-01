@@ -18,29 +18,29 @@ class CompanyBankSerializer(serializers.ModelSerializer):
     #     response['company'] = CompanyBankSerializer(instance.company_id).data
     #     return response
 
-class MedicineSerliazer(serializers.ModelSerializer):
+class MedicineSerializer(serializers.ModelSerializer):
     class Meta:
         model=Medicine
         fields="__all__"
 
     def to_representation(self, instance):
         response=super().to_representation(instance)
-        response['company']=CompanySerliazer(instance.company_id).data
+        response['company']=CompanySerializer(instance.company_id).data
         return response
 
 
 
-class MedicalDetailsSerializer(serializers.ModelSerializer):
+class MedicalDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model=MedicalDetail
         fields="__all__"
 
     def to_representation(self, instance):
         response = super().to_representation(instance)
-        response['medicine'] = MedicineSerliazer(instance.medicine_id).data
+        response['medicine'] = MedicineSerializer(instance.medicine_id).data
         return response
 
-class MedicalDetailsSerializerSimple(serializers.ModelSerializer):
+class MedicalDetailSerializerSimple(serializers.ModelSerializer):
     class Meta:
         model=MedicalDetail
         fields="__all__"
@@ -79,7 +79,7 @@ class CompanyAccountSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         response = super().to_representation(instance)
-        response['company'] = CompanySerliazer(instance.company_id).data
+        response['company'] = CompanySerializer(instance.company_id).data
         return response
 
 
@@ -99,7 +99,7 @@ class EmployeeSalarySerializer(serializers.ModelSerializer):
         model=EmployeeSalary
         fields="__all__"
 
-class BillDetailsSerializer(serializers.ModelSerializer):
+class BillDetailSerializer(serializers.ModelSerializer):
     class Meta:
-        model=BillDetails
+        model=BillDetail
         fields="__all__"
