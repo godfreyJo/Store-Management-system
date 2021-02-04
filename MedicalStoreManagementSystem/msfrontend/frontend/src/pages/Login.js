@@ -7,6 +7,29 @@ import 'adminbsb-materialdesign/css/style.css'
 import GoogleFontLoader from 'react-google-font-loader'
 
 class Login extends React.Component{
+    state={
+        username:"",
+        password:"",
+        btnDisabled: true,
+        
+    };
+    saveInputs=(event)=>{
+        var key =event.target.name;
+        this.setState({[key]:event.target.value});
+        if(this.state.username !="" && this.state.password !=""){
+            this.setState({btnDisabled: false});
+        }
+        else{
+            this.setState({btnDisabled: true});
+
+        }
+
+    };
+    formSubmit=(event)=>{
+        event.preventDefault();
+        console.log(this.state);
+
+    };
     render(){
         document.body.className='login-page';
         return(
@@ -29,45 +52,46 @@ class Login extends React.Component{
                     ]}
                    
             />
-            <div class="login-box">
-            <div class="logo">
-                <a href="javascript:void(0);">Admin<b>BSB</b></a>
-                <small>Admin BootStrap Based - Material Design</small>
+            <div className="login-box">
+            <div className="logo">
+                <a href="javascript:void(0);">Store Management</a>
+                
             </div>
-            <div class="card">
-                <div class="body">
-                    <form id="sign_in" method="POST">
-                        <div class="msg">Sign in to start your session</div>
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="material-icons">person</i>
+            <div className="card">
+                <div className="body">
+                    <form id="sign_in" method="POST" onSubmit={this.formSubmit}>
+                        <div className="msg">Sign in to start your session</div>
+                        <div className="input-group">
+                            <span className="input-group-addon">
+                                <i className="material-icons">person</i>
                             </span>
-                            <div class="form-line">
-                                <input type="text" class="form-control" name="username" placeholder="Username" required autofocus/>
+                            <div className="form-line">
+                                <input type="text" className="form-control" name="username" placeholder="Username" required autofocus onChange={this.saveInputs}/>
                             </div>
                         </div>
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="material-icons">lock</i>
+                        <div className="input-group">
+                            <span className="input-group-addon">
+                                <i className="material-icons">lock</i>
                             </span>
-                            <div class="form-line">
-                                <input type="password" class="form-control" name="password" placeholder="Password" required/>
+                            <div className="form-line">
+                                <input type="password" className="form-control" name="password" placeholder="Password" required  
+                                onChange={this.saveInputs}/>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-8 p-t-5">
-                                <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink"/>
+                        <div className="row">
+                            <div className="col-xs-8 p-t-5">
+                                <input type="checkbox" name="rememberme" id="rememberme" className="filled-in chk-col-pink"/>
                                 <label for="rememberme">Remember Me</label>
                             </div>
-                            <div class="col-xs-4">
-                                <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+                            <div className="col-xs-4">
+                                <button className="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
                             </div>
                         </div>
-                        <div class="row m-t-15 m-b--20">
-                            <div class="col-xs-6">
+                        <div className="row m-t-15 m-b--20">
+                            <div className="col-xs-6">
                                 <a href="sign-up.html">Register Now!</a>
                             </div>
-                            <div class="col-xs-6 align-right">
+                            <div className="col-xs-6 align-right">
                                 <a href="forgot-password.html">Forgot Password?</a>
                             </div>
                         </div>
