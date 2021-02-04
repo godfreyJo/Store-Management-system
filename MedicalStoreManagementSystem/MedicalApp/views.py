@@ -539,4 +539,4 @@ class HomeApiViewset(viewsets.ViewSet):
     
 company_list=CompanyViewSet.as_view({'get':'list'})
 company_create=CompanyViewSet.as_view({'post':'create'})
-company_update=CompanyViewSet.as_view({'pot':'update'})
+company_update=CompanyViewSet.as_view({'put':'update'})
