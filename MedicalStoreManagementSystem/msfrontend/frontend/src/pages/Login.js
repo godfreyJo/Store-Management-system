@@ -1,10 +1,10 @@
 import React from 'react'
-
-import 'adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css'
-import 'adminbsb-materialdesign/plugins/node-waves/waves.css'
-import 'adminbsb-materialdesign/plugins/animate-css/animate.css'
-import 'adminbsb-materialdesign/css/style.css'
-import GoogleFontLoader from 'react-google-font-loader'
+import 'adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css';
+import 'adminbsb-materialdesign/plugins/node-waves/waves.css';
+import 'adminbsb-materialdesign/plugins/animate-css/animate.css';
+import 'adminbsb-materialdesign/css/style.css';
+import GoogleFontLoader from 'react-google-font-loader';
+import AuthHandler from "../utils/AuthHandler";
 
 class Login extends React.Component{
     state={
@@ -16,6 +16,7 @@ class Login extends React.Component{
     saveInputs=(event)=>{
         var key =event.target.name;
         this.setState({[key]:event.target.value});
+        // eslint-disable-next-line eqeqeq
         if(this.state.username !="" && this.state.password !=""){
             this.setState({btnDisabled: false});
         }
@@ -28,6 +29,11 @@ class Login extends React.Component{
     formSubmit=(event)=>{
         event.preventDefault();
         console.log(this.state);
+        AuthHandler.login(this.state.username, this.state.password);
+
+    };
+    handleAjaxResponse=(data)=>{
+        console.log(data);
 
     };
     render(){
@@ -84,7 +90,7 @@ class Login extends React.Component{
                                 <label for="rememberme">Remember Me</label>
                             </div>
                             <div className="col-xs-4">
-                                <button className="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+                                <button className="btn btn-block bg-pink waves-effect" type="submit" disabled={this.state.btnDisabled}>SIGN IN</button>
                             </div>
                         </div>
                         <div className="row m-t-15 m-b--20">
