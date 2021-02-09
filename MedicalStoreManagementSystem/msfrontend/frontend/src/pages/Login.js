@@ -80,10 +80,7 @@ class Login extends React.Component{
 
     };
 
-    render(){
-        if(AuthHandler.loggedIn()){
-            return <Redirect to={Config.homeUrl} />;
-        }
+    render(){        
         document.body.className='login-page';
         return(
             <React.Fragment>
