@@ -1,3 +1,6 @@
+/* eslint-disable no-script-url */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable eqeqeq */
 /* eslint-disable react/jsx-no-undef */
 import React from 'react'
 import 'adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css';
@@ -17,10 +20,10 @@ class Login extends React.Component{
         loginStatus:0,
         
     };
-    saveInputs=(event)=>{
+    saveInputs = (event) => {
         var key =event.target.name;
         this.setState({[key]:event.target.value});        
-        if(this.state.username != "" && this.state.password != ""){
+        if(this.state.username !="" && this.state.password !=""){
             this.setState({ btnDisabled: false });
         } else {
             this.setState({ btnDisabled: true });
@@ -104,8 +107,7 @@ class Login extends React.Component{
             />
             <div className="login-box">
             <div className="logo">
-                <a href="index.js">Store Management</a>
-                
+                <a href="index.html">Store Management</a>                
             </div>
             <div className="card">
                 <div className="body">
