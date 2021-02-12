@@ -1,4 +1,5 @@
 import React from 'react';
+import usericon from 'adminbsb-materialdesign/images/user.png';
 
 class Sidebar extends React.Component {
   render(){
@@ -8,7 +9,7 @@ class Sidebar extends React.Component {
         
         <div className="user-info">
             <div className="image">
-                <img src="images/user.png" width="48" height="48" alt="User"/>
+                <img src={usericon} width="48" height="48" alt="User"/>
             </div>
             <div className="info-container">
                 <div className="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
