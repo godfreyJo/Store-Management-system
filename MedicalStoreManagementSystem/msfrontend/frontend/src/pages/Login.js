@@ -84,24 +84,7 @@ class Login extends React.Component{
         document.body.className='login-page';
         return(
             <React.Fragment>
-            <GoogleFontLoader
-                    fonts={[
-                        {
-                            font: 'Roboto',
-                            weights:[400, 700],
-                        }                        
-                    ]}
-                    subsets={['latin','cyrillic-ext']}
-            />
-            <GoogleFontLoader
-                    fonts={[
-                        {
-                            font: 'Material+Icons',
-                            
-                        }                        
-                    ]}
-                   
-            />
+            
             <div className="login-box">
             <div className="logo">
                 <a href="index.html">Store Management</a>                
