@@ -8,8 +8,8 @@ class Navbar extends React.Component {
       <nav className="navbar">
         <div className="container-fluid">
           <div className="navbar-header">
-            <a href="#" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse"aria-expanded="false"></a>
-            <a href="#" className="bars" style={{display: "none"}}></a>
+           
+            <a href="#" className="bars"></a>
             <a className="navbar-brand" href="index.html">
               Medical Store Management System
             </a>
