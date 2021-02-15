@@ -2,6 +2,39 @@ import React from 'react';
 import usericon from 'adminbsb-materialdesign/images/user.png';
 
 class Sidebar extends React.Component {
+    state ={
+        defaultClass: "btn-group user-helper-dropdown",
+
+    };
+    constructor(props){
+        super(props) 
+        this.divref=React.createRef();
+    }
+    componentWillMount() {
+        document.addEventListener("mousedown", this.handleMouseClick, false);
+
+    }
+    componentWillUnmount() {
+        document.removeEventListener("mousedown", this.handleMouseClick, false);
+        
+    }
+    handleMouseClick=(events) =>{
+        console.log("ok")
+        if(events.target==this.divref.current){
+            return;
+
+        }else{
+            this.setState({defaultClass: "btn-group user-helper-dropdown"});
+        }
+    }
+    showLogoutMenu = () => {
+        if(this.state.defaultClass == "btn-group user-helper-dropdown"){
+            this.setState({defaultClass: "btn-group user-helper-dropdown open"});
+        }
+        else{
+            this.setState({defaultClass: "btn-group user-helper-dropdown"});
+        }
+    };
   render(){
     return<section>
     
@@ -14,17 +47,16 @@ class Sidebar extends React.Component {
             <div className="info-container">
                 <div className="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
                 <div className="email">john.doe@example.com</div>
-                <div className="btn-group user-helper-dropdown open">
-                    <i className="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                    <ul className="dropdown-menu pull-right">
-                       
+                <div className={this.state.defaultClass}>
+                    <i className="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" onClick={this.showLogoutMenu}ref={this.divref}
+                    >keyboard_arrow_down</i>
+                    <ul className="dropdown-menu pull-right">                   
                         
                         <li><a href="javascript:void(0);" className=" waves-effect waves-block"><i className="material-icons">input</i>Sign Out</a></li>
                     </ul>
                 </div>
             </div>
-        </div>
-        
+        </div>        
         
         <div className="menu">
             <div 
