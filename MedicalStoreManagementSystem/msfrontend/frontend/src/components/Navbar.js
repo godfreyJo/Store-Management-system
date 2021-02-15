@@ -7,9 +7,8 @@ class Navbar extends React.Component {
     return (
       <nav className="navbar">
         <div className="container-fluid">
-          <div className="navbar-header">
-           
-            <a href="#" className="bars"></a>
+          <div className="navbar-header">           
+            <a href="#" className="bars" onClick={this.props.onBarClick}></a>
             <a className="navbar-brand" href="index.html">
               Medical Store Management System
             </a>
