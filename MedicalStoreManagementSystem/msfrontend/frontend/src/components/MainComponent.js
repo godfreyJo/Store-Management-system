@@ -3,9 +3,9 @@ import Overlay from  './Overlay';
 import Navbar from  './Navbar';
 import PageLoader from  './PageLoader';
 import Sidebar from  './Sidebar';
-import HomeComponent from  './HomeComponent';
+import HomeComponent from  '../pages/HomeComponent';
 import GoogleFontLoader from 'react-google-font-loader';
-import  "adminbsb-materialdesign/css/themes/all-themes.css";
+import "adminbsb-materialdesign/css/themes/all-themes.css";
 
 class MainComponent extends React.Component {
   state={
@@ -31,22 +31,20 @@ class MainComponent extends React.Component {
     return<React.Fragment>
       <GoogleFontLoader
                     fonts={[
-                        {
-                            font: 'Roboto',
-                            weights:[400, 700],
-                        }                        
+                      {
+                        font: "Roboto",
+                        weights: [400, 700],
+                      },
                     ]}
-                    subsets={['latin','cyrillic-ext']}
-            />
-            <GoogleFontLoader
+                    subsets={["latin", "cyrillic-ext"]}
+                  />
+      <GoogleFontLoader
                     fonts={[
-                        {
-                            font: 'Material+Icons',
-                            
-                        }                        
-                    ]}
-                   
-            />
+                      {
+                        font: "Material+Icons",
+                      },
+                    ]}                   
+      />
       <Overlay display={this.state.displayOverlay}/>
       <Navbar onBarClick={this.onBarClick}/>
       <Sidebar/>
@@ -56,4 +54,4 @@ class MainComponent extends React.Component {
   }
 }
 
-export default MainComponent
+export default MainComponent;
