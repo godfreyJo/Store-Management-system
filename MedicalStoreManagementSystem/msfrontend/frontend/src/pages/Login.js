@@ -44,6 +44,7 @@ class Login extends React.Component{
             this.setState({ loginStatus: 4});
         } else{
             this.setState({loginStatus: 3});
+            window.location=Config.homeUrl;
         }
     };
     getMessages = () =>{
@@ -80,10 +81,30 @@ class Login extends React.Component{
 
     };
 
-    render(){        
+    render(){   
+        if (AuthHandler.loggedIn()){
+            return <Redirect to={Config.homeUrl}/>;
+        }
+
         document.body.className='login-page';
         return(
             <React.Fragment>
+        <GoogleFontLoader
+                fonts={[
+            {
+              font: "Roboto",
+              weights: [400, 700],
+            },
+          ]}
+          subsets={["latin", "cyrillic-ext"]}
+        />
+        <GoogleFontLoader
+          fonts={[
+            {
+              font: "Material+Icons",
+            },
+          ]}
+        />
             
             <div className="login-box">
             <div className="logo">
