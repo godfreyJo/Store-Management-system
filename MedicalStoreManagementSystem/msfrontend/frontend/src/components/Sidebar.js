@@ -1,5 +1,7 @@
 import React from 'react';
 import usericon from 'adminbsb-materialdesign/images/user.png';
+import Config from "../utils/Config";
+import { Link } from 'react-router-dom';
 
 class Sidebar extends React.Component {
     state ={
@@ -52,7 +54,7 @@ class Sidebar extends React.Component {
                     >keyboard_arrow_down</i>
                     <ul className="dropdown-menu pull-right">                   
                         
-                        <li><a href="javascript:void(0);" className=" waves-effect waves-block"><i className="material-icons">input</i>Sign Out</a></li>
+                        <li><a href="#" className=" waves-effect waves-block"><i className="material-icons">input</i>Sign Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -64,14 +66,20 @@ class Sidebar extends React.Component {
             style={{position: "relative", 
             overflow: "hidden", 
             width: "auto",
-            height: "157px"}}><ul className="list" style={{ overflow: "hidden", width: "auto", height: "157px"}}>
+            }}><ul className="list" style={{ overflow: "hidden", width: "auto"}}>
+                { Config.sidebarItem.map((item) =>
+                <li
+                key={item.index}
                 
-                <li className="active">
-                    <a href="index.html" className="toggled waves-effect waves-block">
-                        <i className="material-icons">home</i>
-                        <span>Home</span>
-                    </a>
-                </li>
+                className={item.index == this.props.activepage ? "active" : ""}>
+                <Link to={item.url} className="toggled waves-effect waves-block">
+                    <i className="material-icons">{item.icon}</i>
+                    <span>{item.title}</span>
+                </Link>
+            </li>
+            )}
+                
+                
                
             </ul><div className="slimScrollBar" 
             style={{ background: "rgba(0, 0, 0, 0.5)",
@@ -95,6 +103,7 @@ class Sidebar extends React.Component {
             opacity: "0.2", 
             zIndex: "90", 
             right: "1px"}}>
+                
             </div>
             </div>
         </div>
@@ -102,7 +111,7 @@ class Sidebar extends React.Component {
         
         <div className="legal">
             <div className="copyright">
-                © 2016 - 2017 <a href="javascript:void(0);">AdminBSB - Material Design</a>.
+                © 2016 - 2017 <a href="#">AdminBSB - Material Design</a>.
             </div>
             <div className="version">
                 <b>Version: </b> 1.0.5
