@@ -11,6 +11,7 @@ class Sidebar extends React.Component {
     constructor(props){
         super(props) 
         this.divref=React.createRef();
+        this.divref2=React.createRef();
     }
     componentWillMount() {
         document.addEventListener("mousedown", this.handleMouseClick, false);
@@ -21,11 +22,12 @@ class Sidebar extends React.Component {
         
     }
     handleMouseClick=(events) =>{
-        console.log("ok")
-        if(events.target==this.divref.current){
+        console.log("Click Element")
+        if(events.target==this.divref.current || events.target === this.divref2.current){
             return;
 
         }else{
+            console.log("Click Outside")
             this.setState({defaultClass: "btn-group user-helper-dropdown"});
         }
     }
@@ -54,7 +56,7 @@ class Sidebar extends React.Component {
                     >keyboard_arrow_down</i>
                     <ul className="dropdown-menu pull-right">                   
                         
-                        <li><a href="#" className=" waves-effect waves-block"><i className="material-icons">input</i>Sign Out</a></li>
+                        <li><a href={Config.logoutPageUrl} className=" waves-effect waves-block"><i className="material-icons"ref={this.divref2}>input</i>Sign Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -66,61 +68,74 @@ class Sidebar extends React.Component {
             style={{position: "relative", 
             overflow: "hidden", 
             width: "auto",
-            }}><ul className="list" style={{ overflow: "hidden", width: "auto"}}>
-                { Config.sidebarItem.map((item) =>
-                <li
-                key={item.index}
-                
-                className={item.index == this.props.activepage ? "active" : ""}>
-                <Link to={item.url} className="toggled waves-effect waves-block">
-                    <i className="material-icons">{item.icon}</i>
+            }}>
+                <ul 
+                className="list" 
+                style={{ overflow: "hidden", width: "auto"}}
+                >
+
+                { Config.sidebarItem.map(
+                    (item) => 
+                    <li 
+                    // key={item.index}
+                    className={
+                        item.index == this.props.activepage ? "active" : ""
+                    }
+                >
+
+                <Link 
+                    to={item.url}
+                    className="toggled waves-effect waves-block"
+                >
+                    <i className="material-icons">{item.icons}</i>
                     <span>{item.title}</span>
                 </Link>
             </li>
-            )}
-                
-                
-               
-            </ul><div className="slimScrollBar" 
-            style={{ background: "rgba(0, 0, 0, 0.5)",
-            width: "4px", 
-            position: "absolute",
-            top: "0px", 
-            opacity: "0.4",
-            display: "block", 
-            borderRadius : "0px" , 
-            zIndex: "99", 
-            right: "1px", 
-            height: "30px"}}></div><div 
+            )}       
+            </ul>
+            <div className="slimScrollBar" 
+            style={{ 
+                background: "rgba(0, 0, 0, 0.5)",
+                width: "4px", 
+                position: "absolute",
+                top: "0px", 
+                opacity: "0.4",
+                display: "block", 
+                borderRadius : "0px" , 
+                zIndex: "99", 
+                right: "1px", 
+                height: "30px"
+            }}
+            ></div>
+            <div 
             className="slimScrollRail" 
-            style={{ width: "4px", 
-            height: "100", 
-            position: "absolute", 
-            top: "0px", 
-            display: "none", 
-            borderRadius: "0px", 
-            background: "rgb(51, 51, 51)", 
-            opacity: "0.2", 
-            zIndex: "90", 
-            right: "1px"}}>
-                
-            </div>
+            style={{ 
+                width: "4px", 
+                height: "100", 
+                position: "absolute", 
+                top: "0px", 
+                display: "none", 
+                borderRadius: "0px", 
+                background: "rgb(51, 51, 51)", 
+                opacity: "0.2", 
+                zIndex: "90", 
+                right: "1px"
+            }}                  
+            ></div>
             </div>
         </div>
-        
-        
         <div className="legal">
             <div className="copyright">
-                © 2016 - 2017 <a href="#">AdminBSB - Material Design</a>.
+                © 2021 - 2031
+                <a href="#">Jopap-Systems</a>.
             </div>
             <div className="version">
-                <b>Version: </b> 1.0.5
+                <b>Version: </b> 1.0.0
             </div>
         </div>
-      
     </aside>
-   
-</section>;
+</section>
+
   }
 }
 
