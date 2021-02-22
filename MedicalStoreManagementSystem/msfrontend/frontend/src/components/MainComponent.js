@@ -28,14 +28,23 @@ class MainComponent extends React.Component {
   }
 
   componentWillMount() {
-    window.addEventListener("resize",this.onscreenresize)
+    window.addEventListener("resize", this.onscreenresize);
 
   }
   componentWillUnmount() {
-    window.removeEventListener("resize",this.onscreenresize)
+    window.removeEventListener("resize", this.onscreenresize);
 
 
   }
+  componentDidMount(){
+    var inputall=document.querySelector("input");
+    inputall.forEach((input) => {
+      this.parentNode.className = "form-line focused";
+    })
+
+
+  }
+
 
 
   render(){
