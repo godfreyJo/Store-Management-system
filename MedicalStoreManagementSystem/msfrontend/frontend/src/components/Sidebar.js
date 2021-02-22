@@ -75,9 +75,9 @@ class Sidebar extends React.Component {
                 >
 
                 { Config.sidebarItem.map(
-                    (item) => 
+                    (item) => (
                     <li 
-                    // key={item.index}
+                    key={item.index}
                     className={
                         item.index == this.props.activepage ? "active" : ""
                     }
@@ -91,7 +91,7 @@ class Sidebar extends React.Component {
                     <span>{item.title}</span>
                 </Link>
             </li>
-            )}       
+            ))}       
             </ul>
             <div className="slimScrollBar" 
             style={{ 
