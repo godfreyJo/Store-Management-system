@@ -1,7 +1,14 @@
 import React from "react";
 
 
-class CompanyComponent extends React.Component {  
+class CompanyComponent extends React.Component { 
+   
+    async formSubmit(event) {
+        event.preventDefault();
+        var APIHandler=new APIHandler();
+        APIHandler.saveCompanyData();
+    }
+    
   render() {
     return (
       <section className="content">
@@ -17,7 +24,7 @@ class CompanyComponent extends React.Component {
                             </h2>                           
                         </div>
                         <div className="body">
-                            <form>
+                            <form onSubmit={this.formSubmit}>
                                 <label htmlFor="email_address">Name</label>
                                 <div className="form-group">
                                     <div className="form-line">
@@ -91,7 +98,7 @@ class CompanyComponent extends React.Component {
                                 </div>
                                 <br />
                                                                                                                   
-                                <button type="button" className="btn btn-primary m-t-15 waves-effect">Add Company</button>
+                                <button type="submit" className="btn btn-primary m-t-15 waves-effect">Add Company</button>
                             </form>
                         </div>
                     </div>
