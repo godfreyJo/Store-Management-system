@@ -15,7 +15,8 @@ SECRET_KEY = 'e&g9#=it^0djh)%)q&=+#i8qv11imf&81xai=^&_*$7s08jny('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+CORS_ORIGIN_ALLOW_ALL=True
 
 
 # Application definition
@@ -125,10 +126,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-]
+# CORS_ORIGIN_WHITELIST = [
+#     "http://localhost:3000",
+#     "http://127.0.0.1:3000",
+# ]
 
 
 MEDIA_URL="/media/"
