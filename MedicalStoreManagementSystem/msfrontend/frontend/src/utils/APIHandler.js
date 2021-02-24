@@ -8,11 +8,20 @@ const {default: Config} = require('./Config');
 class APIHandler{
     async checkLogin() {
         if (AuthHandler.checkTokenExpiry()) {
-            var response = await Axios.post(Config.refreshApiUrl, {
-                refesh: AuthHandler.getRefreshToken(),
-            });
-            reactLocalStorage.set('token', response.data.access);
-    }
+            try{
+                var response = await Axios.post(Config.refreshApiUrl, {
+                    refesh: AuthHandler.getRefreshToken(),
+                });
+                reactLocalStorage.set('token', response.data.access);
+        } catch(error){
+// Not using valid Token for refresh
+            console.log(error);
+            AuthHandler.logoutUser();
+            window.location="/";
+        }
+
+            }
+          
 }
 
 async saveCompanyData(
@@ -24,7 +33,8 @@ async saveCompanyData(
     description
     ){
 
-    this.checkLogin();
+    await this.checkLogin();
+    // wait 
      var response=await Axios.post(
          Config.companyApiUrl, {
              name:name, 
@@ -37,6 +47,14 @@ async saveCompanyData(
         { headers: {Authorization:"Bearer "+AuthHandler.getLoginToken() } }
         );
         return response;
+}
+async fetchAllCompany(){
+    await this.checkLogin();
+    var response = await Axios.get(Config.companyApiUrl, {headers: {Authorization:"Bearer "+AuthHandler.getLoginToken()},
+});
+
+return response;
+
 }
 
 }
