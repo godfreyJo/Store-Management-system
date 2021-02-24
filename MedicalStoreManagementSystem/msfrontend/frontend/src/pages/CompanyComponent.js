@@ -17,6 +17,7 @@ class CompanyComponent extends React.Component {
         errorMessage:"",
         btnMessage:0,
         sendData:false,
+        companyDataList: []
     }
    
     async formSubmit(event) {
@@ -38,15 +39,33 @@ class CompanyComponent extends React.Component {
             this.setState({errorMessage:response.data.message});
             this.setState({sendData:true});
     }
+
+    componentDidMount() {
+        this.fetchCompanyData();
+       
+    }
+    async fetchCompanyData() {
+        var apihandler = new APIHandler();
+        var companydata = await apihandler.fetchAllCompany();
+        console.log(companydata);
+        this.setState({ companyDataList: companydata.data.data });
+
+    }
+    viewCompanyDetails=(company_id)=>{
+        console.log(company_id);
+        // console.log(props);
+
+
+    }
     
   render() {
     return (
-      <section className="content">
+    <section className="content">
         <div className="container-fluid">
             <div className="block-header">
-                <h2>MANAGE COMPANY</h2>
+            <h2>MANAGE COMPANY</h2>
             </div>   
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div className="card">
                         <div className="header">
                             <h2>
@@ -137,18 +156,67 @@ class CompanyComponent extends React.Component {
                                 <div className="alert alert-success">
                                     <strong>Success!</strong>{this.state.errorMessage}.
                                 </div>):""
-  }
+                                    }
                                 { this.state.errorRes==true && this.state.sendData == true ?(
-                                <div className="alert alert-danger">
-                                    <strong>Failed!</strong>{this.state.errorMessage}
-                                </div>):""
-  }
-                            </form>
+                            <div className="alert alert-danger">
+                                <strong>Failed!</strong>{this.state.errorMessage}
+                            </div>):""
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div className="row clearfix">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div className="card">
+                        <div className="header">
+                            <h2>
+                                All Companies
+                               
+                            </h2>
+                            <ul className="header-dropdown m-r--5">                               
+                            </ul>
+                        </div>
+                        <div className="body table-responsive">
+                            <table className="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#ID</th>
+                                        <th>Name</th>
+                                        <th>License No.</th>
+                                        <th>Address</th>
+                                        <th>Contact</th>
+                                        <th>Email</th>
+                                        <th>Added On</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.state.companyDataList.map((company) => (
+                                        <tr>
+                                            <td>{ company.id }</td>
+                                            <td>{ company.name }</td>
+                                            <td>{ company.license_no }</td>
+                                            <td>{ company.address }</td>
+                                            <td>{ company.contact_no }</td>
+                                            <td>{ company.email }</td>
+                                            <td>{ new Date(company.added_on).toLocaleDateString() }</td>
+                                            <td><button className="btn btn-block btn-warning" onClick={ () => this.viewCompanyDetails(company.id)}>
+                                                View
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </section>
+
     );
   }
 }
