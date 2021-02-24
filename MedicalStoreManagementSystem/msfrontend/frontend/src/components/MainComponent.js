@@ -51,6 +51,8 @@ class MainComponent extends React.Component {
     });
   }
 
+ 
+
 
   render(){
     if (this.state.width > 1150 ){
@@ -58,8 +60,10 @@ class MainComponent extends React.Component {
     }else {
       document.getElementById("root").className=this.state.bodyClass;
     }
+    var Page = this.props.page;
     
-    return<React.Fragment>
+    return(
+    <React.Fragment>
       <GoogleFontLoader
                     fonts={[
                       {
@@ -78,10 +82,10 @@ class MainComponent extends React.Component {
       />
       <Overlay display={this.state.displayOverlay}/>
       <Navbar onBarClick={this.onBarClick}/>
-      <Sidebar active={this.props.activepage}/>
-      <PageLoader/>
-      <>{this.props.page}</>
-    </React.Fragment>;
+      <Sidebar activepage={this.props.activepage}/>
+      <Page {...this.props} />
+  
+    </React.Fragment>);
   }
 }
 
