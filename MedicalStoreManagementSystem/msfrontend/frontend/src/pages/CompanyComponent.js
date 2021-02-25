@@ -54,6 +54,7 @@ class CompanyComponent extends React.Component {
     viewCompanyDetails=(company_id)=>{
         console.log(company_id);
         // console.log(props);
+        this.props.history.push("/companydetails/"+company_id)
 
 
     }
@@ -193,7 +194,7 @@ class CompanyComponent extends React.Component {
                                 </thead>
                                 <tbody>
                                     {this.state.companyDataList.map((company) => (
-                                        <tr>
+                                        <tr key={company.id}>
                                             <td>{ company.id }</td>
                                             <td>{ company.name }</td>
                                             <td>{ company.license_no }</td>
