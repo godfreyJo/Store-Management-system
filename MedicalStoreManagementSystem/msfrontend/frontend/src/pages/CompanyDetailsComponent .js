@@ -9,6 +9,7 @@ class CompanyDetailsComponent extends React.Component {
     constructor(props) {
         super(props);
         this.formSubmit = this.formSubmit.bind(this);
+        console.log(props.match.params.id);
 
     }
 
@@ -17,12 +18,12 @@ class CompanyDetailsComponent extends React.Component {
         errorMessage:"",
         btnMessage:0,
         sendData:false,
-        companyDataList: []
+        companyBank: [],
     }
    
     async formSubmit(event) {
         event.preventDefault();
-        this.setState({btnMessage:1})
+        this.setState({ btnMessage:1 })
         
         var apiHandler = new APIHandler();
         var response = await apiHandler.saveCompanyData(
@@ -31,8 +32,10 @@ class CompanyDetailsComponent extends React.Component {
             event.target.address.value,
             event.target.contact_no.value,
             event.target.email.value,
-            event.target.description.value
+            event.target.description.value,
+            this.props.match.params.id
             );
+
             console.log(response);
             this.setState({btnMessage:0});
             this.setState({errorRes:response.data.error});
@@ -46,16 +49,17 @@ class CompanyDetailsComponent extends React.Component {
     }
     async fetchCompanyData() {
         var apihandler = new APIHandler();
-        var companydata = await apihandler.fetchAllCompany();
+        var companydata = await apihandler.fetchCompanyDetails(
+            this.props.match.params.id
+            );
         console.log(companydata);
-        this.setState({ companyDataList: companydata.data.data });
+        this.setState({companyBank: companydata.data.data.company_bank});
+        // this.setState({ companyDataList: companydata.data.data });
 
     }
-    viewCompanyDetails=(company_id)=>{
+    viewCompanyDetails=(company_id) => {
         console.log(company_id);
-        // console.log(props);
-
-
+        console.log(this.props);
     }
     
   render() {
@@ -69,7 +73,7 @@ class CompanyDetailsComponent extends React.Component {
                     <div className="card">
                         <div className="header">
                             <h2>
-                                Add Company
+                                Edit Company
                             </h2>                           
                         </div>
                         <div className="body">
@@ -171,7 +175,7 @@ class CompanyDetailsComponent extends React.Component {
                     <div className="card">
                         <div className="header">
                             <h2>
-                                All Companies
+                              Company Bank
                                
                             </h2>
                             <ul className="header-dropdown m-r--5">                               
@@ -182,27 +186,22 @@ class CompanyDetailsComponent extends React.Component {
                                 <thead>
                                     <tr>
                                         <th>#ID</th>
-                                        <th>Name</th>
-                                        <th>License No.</th>
-                                        <th>Address</th>
-                                        <th>Contact</th>
-                                        <th>Email</th>
+                                        <th>Account No.</th>
+                                        <th>IFSC Code.</th>
                                         <th>Added On</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.state.companyDataList.map((company) => (
+                                    {this.state.companyBank.map((company) => (
                                         <tr key={company.id}>
                                             <td>{ company.id }</td>
-                                            <td>{ company.name }</td>
-                                            <td>{ company.license_no }</td>
-                                            <td>{ company.address }</td>
-                                            <td>{ company.contact_no }</td>
-                                            <td>{ company.email }</td>
+                                            <td>{ company.bank_account_no }</td>
+                                            <td>{ company.ifsc_no }</td>                                            
                                             <td>{ new Date(company.added_on).toLocaleDateString() }</td>
-                                            <td><button className="btn btn-block btn-warning" onClick={ () => this.viewCompanyDetails(company.id)}>
-                                                View
+                                            <td><button 
+                                                className="btn btn-block btn-danger">
+                                                DELETE
                                                 </button>
                                             </td>
                                         </tr>
@@ -221,4 +220,4 @@ class CompanyDetailsComponent extends React.Component {
   }
 }
 
-export default CompanyDetailsComponent;
+export default CompanyDetailsComponent ;
