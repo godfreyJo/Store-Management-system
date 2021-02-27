@@ -51,9 +51,6 @@ class MainComponent extends React.Component {
     });
   }
 
- 
-
-
   render(){
     if (this.state.width > 1150 ){
       document.getElementById("root").className="theme-red";
@@ -80,9 +77,9 @@ class MainComponent extends React.Component {
                       },
                     ]}                   
       />
-      <Overlay display={this.state.displayOverlay}/>
-      <Navbar onBarClick={this.onBarClick}/>
-      <Sidebar activepage={this.props.activepage}/>
+      <Overlay display={ this.state.displayOverlay }/>
+      <Navbar onBarClick={ this.onBarClick }/>
+      <Sidebar activepage={ this.props.activepage }/>
       <Page {...this.props} />
   
     </React.Fragment>);
