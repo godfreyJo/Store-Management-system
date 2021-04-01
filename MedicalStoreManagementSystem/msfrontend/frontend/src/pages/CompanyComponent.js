@@ -69,9 +69,27 @@ class CompanyComponent extends React.Component {
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div className="card">
                         <div className="header">
+                            <div className="text-center">
+                                <div className="preloader pl-size-xl">
+                                    <div className="spinner-layer">
+                                        <div className="circle-clipper left">
+                                            <div className="circle">
+
+                                            </div>
+                                            <div className="circle-clipper right">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
                             <h2>
                                 Add Company
-                            </h2>                           
+                            </h2>     
+
+                            </div>
+                                                 
                         </div>
                         <div className="body">
                             <form onSubmit={this.formSubmit}>
